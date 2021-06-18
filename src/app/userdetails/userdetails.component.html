@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h4 class="text-primary">{{login| uppercase}} </h4>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container border p-2">
+    <div class="row">
+        <div class="col-6
+         col-md-4">
+            <img src="{{avatar_url}}" alt="" width="200" style="border-radius: 50%; margin-left: 80px;" class="">
+        </div>
+        <div class="col-6 col-md-8 pt-4">
+            <h4 class="p-2 "><span class="text-warning p-1">Login Id:</span>{{id}}</h4>
+            <h4 class="p-2 "><span class="text-warning p-1"> Owner Name:</span>{{login}}</h4>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h4>Public Repositories</h4>
+        </div>
+        <div class="col-6">
+            <div class="text-right">
+                <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div (click)="getRepos(i)" *ngFor="let i of repos |paginate: { itemsPerPage: 10, currentPage: page,totalItems:totalRecords }">
+                <div class="media  border mb-4 p-2 shadow services " style="border-radius:20px">
+                    <!-- <img class="align-self-center mr-4" src="{{user.avatar_url}}" alt="Generic placeholder image"
+                        style="width:100px; border-radius: 50%;"> -->
+                    <div class="media-body">
+                        <h5 class="mt-0 p-1 m-2"><a href="{{i.html_url}}"> {{i.owner.login}}</a></h5>
+                        <h5 class="mt-0 p-1 m-2"> {{i.id}}</h5>
+                        <h5 class="mt-0 p-1 m-2">Repository Name:<span class="text-danger pl-3">{{i.name}}</span></h5>
+                        <p class="mt-0 p-1 m-2">Description:{{i.description}}</p>
+                        <h5></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
